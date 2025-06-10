@@ -1,0 +1,285 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFF8E1; /* Light cream background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top to allow scrolling */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 700px; /* Wider container */
+    width: 90%;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Stronger, softer shadow */
+    overflow: hidden; /* Ensure content stays within bounds */
+}
+
+h2 {
+    color: #FF6B35; /* Bright orange for headings */
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 2.2em;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: #FFC400; /* Yellow accent under heading */
+    border-radius: 2px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative; /* For floating labels */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #8B4513; /* Saddle brown for labels */
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    transform-origin: left top;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    pointer-events: none;
+    background-color: transparent;
+    padding: 0 5px;
+    z-index: 1;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: calc(100% - 30px); /* Adjust for padding and borders */
+    padding: 15px;
+    border: 2px solid #FFC400; /* Light orange border */
+    border-radius: 10px; /* Slightly more rounded */
+    font-size: 1.1em;
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding-top: 25px; /* Space for floating label */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #FF6B35; /* Bright orange on focus */
+    box-shadow: 0 0 8px rgba(255, 107, 53, 0.3); /* Soft glow */
+    outline: none;
+}
+
+/* Floating Label Effect */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label,
+.form-group select:focus + label,
+.form-group select:valid + label { /* For select, 'valid' can work if first option is empty and not valid */
+    top: 5px; /* Move label up */
+    font-size: 0.85em; /* Shrink label */
+    color: #FF6B35; /* Change label color on focus/filled */
+    background-color: #ffffff; /* Background for label when floating */
+    padding: 0 5px;
+}
+/* Adjust for selects - assuming first option is empty and not valid */
+.form-group select:valid + label {
+    top: 5px;
+    font-size: 0.85em;
+    color: #FF6B35;
+    background-color: #ffffff;
+    padding: 0 5px;
+}
+
+
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+    padding-left: 15px; /* Indent for alignment */
+}
+
+.radio-group label, .checkbox-group label {
+    position: static; /* Override absolute positioning for these labels */
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0;
+    font-weight: normal;
+    color: #333;
+    font-size: 1em;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2); /* Slightly larger checkboxes/radios */
+    accent-color: #FF6B35; /* Orange accent for native controls */
+}
+
+
+button {
+    background-color: #FF6B35; /* Bright orange button */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: 100%;
+    margin-top: 35px;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #E05C2B; /* Darker orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.date-icon {
+    position: absolute;
+    right: 25px;
+    top: 38px; /* Adjust position for floating label */
+    color: #8B4513;
+    font-size: 1.2em;
+    pointer-events: none; /* Make icon unclickable */
+    z-index: 2; /* Ensure it's above input but below label when floating */
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: #4CAF50; /* Green for success */
+}
+
+.alert-danger {
+    background-color: #F44336; /* Red for danger */
+}
+
+/* Data Display Table */
+.data-display-table {
+    width: 100%;
+    border-collapse: separate; /* For rounded corners on cells */
+    border-spacing: 0;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Overall table rounded corners */
+    overflow: hidden; /* Ensures child elements respect border-radius */
+}
+
+.data-display-table th,
+.data-display-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* Light separator */
+}
+
+.data-display-table th {
+    background-color: #FFC400; /* Light orange for table headers */
+    color: #8B4513; /* Dark brown for header text */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.data-display-table tbody tr:nth-child(even) {
+    background-color: #FFFDE7; /* Very light cream for even rows */
+}
+
+.data-display-table tbody tr:hover {
+    background-color: #FFE0B2; /* Lighter orange on hover */
+}
+
+.data-display-table td {
+    color: #555;
+}
+
+/* Range Input Styling */
+input[type="range"] {
+    width: calc(100% - 30px);
+    height: 10px;
+    background: #FFC400; /* Light orange track */
+    border-radius: 5px;
+    outline: none;
+    margin-top: 25px; /* Adjust for floating label */
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #FF6B35; /* Bright orange thumb */
+    cursor: pointer;
+    border: 3px solid #FFF; /* White border for thumb */
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #FF6B35;
+    cursor: pointer;
+    border: 3px solid #FFF;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="range"] + output {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #8B4513;
+}
+
+/* Custom dropdown arrow for select */
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%238B4513" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 24px auto;
+    padding-right: 50px; /* Make space for the custom arrow */
+}
