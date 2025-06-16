@@ -1,2 +1,0 @@
-# PSDP
-Supply Manajement
